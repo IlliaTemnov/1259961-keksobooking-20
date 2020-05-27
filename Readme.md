@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Illia Temnov](https://up.htmlacademy.ru/javascript/20/user/1259961).
-* Наставник: `Захар Овчаров`.
+* Наставник: [Захар Овчаров](https://htmlacademy.ru/profile/id906939).
 
 ---
 

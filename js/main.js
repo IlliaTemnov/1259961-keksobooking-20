@@ -1,7 +1,7 @@
 'use strict';
 
 var map = document.querySelector('.map');
-var pinTemplate = document.querySelector('#pin');
+var template = document.querySelector('#pin');
 var mapPins = document.querySelector('.map__pins');
 
 var UNITS_NUMBER = 8;
@@ -12,7 +12,7 @@ var MAX_DOZENS_INT = 10;
 var Y_COORD_MIN = 130;
 var Y_COORD_MAX = 630;
 var X_COORD_MIN = 0;
-var X_COORD_MAX = document.querySelector('.map__overlay').innerWidth;
+var X_COORD_MAX = map.offsetWidth;
 
 var housingType = ['palace', 'flat', 'house', 'bungalo'];
 var checkinTime = ['12:00', '13:00', '14:00'];
@@ -54,11 +54,11 @@ var createUnitsArr = function (unitsQuantity) {
   for (var i = 1; i < unitsQuantity + 1; i++) {
     var unit = {
       author: {
-        avatar: 'img/avatars/user{{' + imageAdress[i] + '}}.png'
+        avatar: 'img/avatars/user' + imageAdress[i] + '.png'
       },
       offer: {
         title: 'Сдам навсегда!',
-        adress: '{{location.' + getRandomInt(MIN_HUNDREDS_INT, MAX_HUNDREDS_INT) + '}, {{location.' + getRandomInt(MIN_HUNDREDS_INT, MAX_HUNDREDS_INT) + ' }}',
+        adress: getRandomInt(MIN_HUNDREDS_INT, MAX_HUNDREDS_INT) + ', ' + getRandomInt(MIN_HUNDREDS_INT, MAX_HUNDREDS_INT),
         price: getRandomInt(MIN_HUNDREDS_INT, MAX_HUNDREDS_INT),
         type: getRandomValue(housingType),
         rooms: getRandomInt(MIN_DOZENS_INT, MAX_DOZENS_INT),
@@ -83,7 +83,7 @@ var createUnitsArr = function (unitsQuantity) {
 map.classList.remove('map--faded');
 
 var getRenderUnit = function (unitObj) {
-  var renderPinTemplate = pinTemplate.cloneNode(true);
+  var renderPinTemplate = template.cloneNode(true);
   var pinButton = renderPinTemplate.content.querySelector('.map__pin');
   var avatarImg = renderPinTemplate.content.querySelector('img');
 
@@ -96,7 +96,14 @@ var getRenderUnit = function (unitObj) {
 };
 
 var fragment = document.createDocumentFragment();
-for (var i = 0; i < UNITS_NUMBER; i++) {
-  fragment.appendChild(getRenderUnit(createUnitsArr(UNITS_NUMBER)));
-}
+// for (var i = 0; i < UNITS_NUMBER; i++) {
+//   fragment.appendChild(getRenderUnit(createUnitsArr(UNITS_NUMBER)));
+// }
+var ads = createUnitsArr(UNITS_NUMBER);
+
+ads.forEach(function (ad) {
+  var item = getRenderUnit(ad);
+  fragment.appendChild(item.content);
+});
+
 mapPins.appendChild(fragment);

@@ -169,6 +169,10 @@ var fillAdsCard = function (arr, template) {
     popupFeatures.textContent = arr[0].offer.features;
   } else {
     popupFeatures.remove();
+  } if (arr[0].offer.hasOwnProperty('description')) {
+    popupDescription.textContent = arr[0].offer.description;
+  } else {
+    popupPhotos.remove();
   } if (arr[0].offer.hasOwnProperty('photos')) {
     popupPhotos.src = arr[0].offer.photos;
   } else {

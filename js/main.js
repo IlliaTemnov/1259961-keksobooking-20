@@ -336,7 +336,10 @@ timeOut.addEventListener('change', function (evt) {
   relateTimeOutTimeIn();
 });
 
-mapPins.addEventListener('click', function (evt) {
+// ______________________________________________________
+
+// ads card render form the template and curr[i] of pins arr
+var renderCard = function (evt) {
   var getCurrentMapId = function () {
     var mapPin = evt.target.closest('.map__pin:not(.map__pin--main)');
     var pinsArr = mapPins.querySelectorAll('.map__pin:not(.map__pin--main)');
@@ -344,6 +347,41 @@ mapPins.addEventListener('click', function (evt) {
     return index;
   };
   fillAdsCard(ads[getCurrentMapId()], adsCard);
-});
+};
 
-// ______________________________________________________
+// render ads card after any pin click
+mapPins.addEventListener('click', function (evt) {
+  renderCard(evt, onPopupEscPress);
+  // search curr ads card and close button
+  var mapCard = document.querySelector('.popup');
+  var popupCloseButton = document.querySelector('.popup__close');
+  // closePopup func evt put to variable
+  var onPopupEscPress = function () {
+    evt.preventDefault();
+    if (evt.key === 'Escape') {
+      closePopup();
+    }
+  };
+  // add hidden and remove handler
+  var closePopup = function () {
+    mapCard.classList.add('hidden');
+    document.remove.addEventListener('keydown', onPopupEscPress);
+  };
+  // hide ads card with click
+  popupCloseButton.addEventListener('click', function () {
+    closePopup();
+  });
+  // hide ads card with ESC
+  document.addEventListener('keydown', function () {
+    if (evt.key === 'Escape') {
+      evt.preventDefault();
+      mapCard.classList.add('hidden');
+    }
+  });
+});
+// render card with Enter
+mapPins.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Enter') {
+    renderCard(evt);
+  }
+});

@@ -2,9 +2,7 @@
 
 (function () {
   var form = document.querySelector('.ad-form');
-  var mapPinMain = document.querySelector('.map__pin--main');
   form.classList.add('disabled');
-  var adressField = document.querySelector('#address');
   var houseTypeField = document.querySelector('#type');
   var priceField = document.querySelector('#price');
   var timeIn = document.querySelector('#timein');
@@ -15,7 +13,6 @@
 
   var MIN_TITLE_LENGTH = 30;
   var MAX_TITLE_LENGTH = 100;
-  var PIN_HEIGHT = 45;
 
   guestSelEl.value = '1';
   roomSelEl.value = '1';
@@ -40,30 +37,6 @@
 
   guestSelEl.addEventListener('change', function () {
     checkRoomsAndGuests();
-  });
-
-  adressField.value = window.main.map.offsetWidth / 2 + ', ' + window.main.map.offsetHeight / 2;
-
-  var doActiveMap = function () {
-    window.main.map.classList.remove('map--faded');
-    form.classList.remove('ad-form--disabled');
-    adressField.value = Math.round(window.main.map.offsetWidth / 2) + ', ' + Math.round(window.main.map.offsetHeight / 2 - PIN_HEIGHT);
-  };
-
-  mapPinMain.addEventListener('mousedown', function () {
-    var evt = evt || window.event;
-    if ('buttons' in evt) {
-      if (evt.buttons === 1) {
-        doActiveMap();
-      }
-    }
-  });
-
-  mapPinMain.addEventListener('keydown', function (evt) {
-    evt.preventDefault();
-    if (evt.key === 'Enter') {
-      doActiveMap();
-    }
   });
 
   titleField.addEventListener('change', function (evt) {
@@ -154,4 +127,7 @@
     relateTimeOutTimeIn();
   });
 
+  window.form = {
+    form: form
+  };
 })();

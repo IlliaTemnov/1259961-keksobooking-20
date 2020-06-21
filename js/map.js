@@ -2,6 +2,8 @@
 
 (function () {
 
+  var adressField = document.querySelector('#address');
+  var PIN_HEIGHT = 45;
   var callBackClick = function (evt) {
 
     var adsPin = evt.target.closest('.map__pin:not(.map__pin--main)');
@@ -43,4 +45,16 @@
       callBackClick(evt);
     }
   });
+
+  adressField.value = window.main.map.offsetWidth / 2 + ', ' + window.main.map.offsetHeight / 2;
+
+  var doActiveMap = function () {
+    window.main.map.classList.remove('map--faded');
+    window.form.form.classList.remove('ad-form--disabled');
+    adressField.value = Math.round(window.main.map.offsetWidth / 2) + ', ' + Math.round(window.main.map.offsetHeight / 2 - PIN_HEIGHT);
+  };
+
+  window.map = {
+    doActiveMap: doActiveMap
+  };
 })();

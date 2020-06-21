@@ -11,6 +11,8 @@
   var Y_COORD_MAX = 630;
   var X_COORD_MIN = 0;
   var X_COORD_MAX = window.main.map.offsetWidth;
+  var X_GAP = 65 / 2;
+  var Y_GAP = 78;
 
   var housingType = ['palace', 'flat', 'house', 'bungalo'];
   var checkinTime = ['12:00', '13:00', '14:00'];
@@ -29,6 +31,8 @@
     Y_COORD_MAX: Y_COORD_MAX,
     X_COORD_MIN: X_COORD_MIN,
     X_COORD_MAX: X_COORD_MAX,
+    X_GAP: X_GAP,
+    Y_GAP: Y_GAP,
     housingType: housingType,
     checkinTime: checkinTime,
     checkoutTime: checkoutTime,

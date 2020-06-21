@@ -32,7 +32,6 @@
   };
 
   window.main = {
-
     map: mapUnit,
     templatePin: templatePin,
     mapPins: mapPinsUnit,

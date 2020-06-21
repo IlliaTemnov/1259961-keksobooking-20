@@ -2,6 +2,7 @@
 'use strict';
 
 (function () {
+
   var createUnitsArr = function (unitsQuantity) {
     var arr = [];
     for (var i = 1; i < unitsQuantity + 1; i++) {
@@ -59,6 +60,5 @@
   window.pin = {
     ads: ads
   };
-
 })();
 
